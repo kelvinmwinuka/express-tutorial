@@ -13,10 +13,6 @@ const connection = mongoose.connect(process.env.MONGO_URI, {
   useUnifiedTopology: true
 })
 
-mongoose.connection.once('open', () => {
-  console.log('connected!')
-})
-
 nunjucks.configure('views', {
   autoescape: true,
   express: app
@@ -24,26 +20,11 @@ nunjucks.configure('views', {
 
 app.set('view engine', 'html')
 
-const PORT = '8000'
-
 app.get('/', async (req, res) => {
-  const users = await User.find({})
-  if (users.length) {
-    console.log(users)
-  } else {
-    let newUser = new User({
-      name: 'Kelvin Mwinuka',
-      email: 'email@kelvinmwinuka.com',
-      username: 'kelvin',
-      password: 'password'
-    })
-    let savedUser = await newUser.save()
-    console.log(savedUser)
-  }
   res.render('home.html')
 })
 
-app.listen(PORT, () => {
+app.listen(process.env.PORT, () => {
   console.log(`Listening on port ${PORT}...`)
 })
 
