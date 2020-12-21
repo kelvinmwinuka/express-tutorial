@@ -6,10 +6,29 @@
     <title>{{ title }}</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="">
+    <!-- Bootstrap CSS -->
+    <link 
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" 
+      rel="stylesheet" 
+      integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" 
+      crossorigin="anonymous">
+    {% block styles %}
+      {# This block will be replaced by child templates when importing styles #}
+    {% endblock %}
   </head>
   <body>
-    {% block content %}{% endblock %}
-    <script src="" async defer></script>
+    {% block content %}
+      {# This block will be replaced by child templates when adding content to the  #}
+    {% endblock %}
+
+    <!-- Bootstrap JavaScript Bundle with Popper -->
+    <script 
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" 
+      integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" 
+      crossorigin="anonymous">
+    </script>
+    {% block scripts %}
+      {# This block will be replaced by child templates when importing scripts #}
+    {% endblock %}
   </body>
 </html>

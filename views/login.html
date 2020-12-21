@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% set title = 'Login' %}
+
+{% block styles %}
+  <style>
+    form {
+      margin-top: 20px;
+      margin-left: 20px;
+      margin-right: 20px;
+    }
+  </style>
+{% endblock %}
+
+{% block content %}
+  <form action="/login" method="POST">
+    {% if messages.error %}
+      <div class="alert alert-danger" role="alert">{{ messages.error }}</div>
+    {% endif %}
+    <div class="mb-3">
+      <label for="name" class="form-label">Username or Email</label>
+      <input 
+        type="text" 
+        class="form-control {% if messages.name_error %}is-invalid{% endif %}" 
+        id="username" 
+        name="username"
+        value="{{ messages.name or '' }}">
+      <div class="invalid-feedback">{{ messages.name_error }}</div>
+    </div>
+    <div class="mb-3">
+      <label for="name" class="form-label">Password</label>
+      <input 
+        type="password" 
+        class="form-control {% if messages.name_error %}is-invalid{% endif %}" 
+        id="password" 
+        name="password"
+        value="{{ messages.name or '' }}">
+      <div class="invalid-feedback">{{ messages.name_error }}</div>
+    </div>
+    <div>
+      <button type="submit" class="btn btn-primary">Login</button>
+    </div>
+  </form>
+{% endblock %}
+
+{% block scripts %}
+{% endblock %}

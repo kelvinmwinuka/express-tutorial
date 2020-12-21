@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% set title = 'Register' %}
+
+{% block styles %}
+  <style>
+    form {
+      margin-top: 20px;
+      margin-left: 20px;
+      margin-right: 20px;
+    }
+  </style>
+{% endblock %}
+
+{% block content %}
+  <form action="/register" method="POST">
+    <div class="mb-3">
+      <label for="name" class="form-label">Name</label>
+      <input 
+        type="text" 
+        class="form-control {% if messages.name_error %}is-invalid{% endif %}" 
+        id="name" 
+        name="name"
+        value="{{ messages.name or '' }}"
+        placeholder="Full Name">
+      <div class="invalid-feedback">{{ messages.name_error }}</div>
+    </div>
+    <div class="mb-3">
+      <label for="username" class="form-label">Username</label>
+      <input 
+        type="text" 
+        class="form-control {% if messages.username_error %}is-invalid{% endif %}" 
+        id="username" 
+        name="username"
+        value="{{ messages.username or '' }}"
+        placeholder="Username">
+      <div class="invalid-feedback">{{ messages.username_error }}</div>
+    </div>
+    <div class="mb-3">
+      <label for="email" class="form-label">Email address</label>
+      <input 
+        type="email" 
+        class="form-control {% if messages.email_error %}is-invalid{% endif %}" 
+        id="email"
+        name="email"
+        value="{{ messages.email or '' }}"
+        placeholder="Email Address">
+      <div class="invalid-feedback">{{ messages.email_error }}</div>
+    </div>
+    <div class="mb-3">
+      <label for="password" class="form-label">Password</label>
+      <input 
+        type="password" 
+        class="form-control {% if messages.password_error %}is-invalid{% endif %}" 
+        id="password" 
+        name="password" 
+        value="{{ messages.password or '' }}"
+        placeholder="Password">
+      <div class="invalid-feedback">{{ messages.password_error }}</div>
+    </div>
+    <div>
+      <button type="submit" class="btn btn-primary">Sign me up!</button>
+    </div>
+  </form>
+{% endblock %}
+
+{% block scripts %}
+{% endblock %}
