@@ -3,17 +3,13 @@
 {% set title = 'Login' %}
 
 {% block styles %}
-  <style>
-    form {
-      margin-top: 20px;
-      margin-left: 20px;
-      margin-right: 20px;
-    }
-  </style>
 {% endblock %}
 
 {% block content %}
   <form action="/login" method="POST">
+    {% if messages.success %}
+      <div class="alert alert-success" role="alert">{{ messages.success }}</div>
+    {% endif %}
     {% if messages.error %}
       <div class="alert alert-danger" role="alert">{{ messages.error }}</div>
     {% endif %}
@@ -36,6 +32,9 @@
         name="password"
         value="{{ messages.name or '' }}">
       <div class="invalid-feedback">{{ messages.name_error }}</div>
+    </div>
+    <div class="mb-3">
+      <a href="/reset">Forget password?</a>
     </div>
     <div>
       <button type="submit" class="btn btn-primary">Login</button>

@@ -18,8 +18,10 @@
     "express-session": "^1.17.1",
     "joi": "^17.3.0",
     "mongoose": "^5.11.8",
+    "nodemailer": "^6.4.17",
     "nunjucks": "^3.2.2",
     "passport": "^0.4.1",
-    "passport-local": "^1.0.0"
+    "passport-local": "^1.0.0",
+    "uuid": "^8.3.2"
   }
 }

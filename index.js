@@ -16,7 +16,8 @@ app.use(express.urlencoded({extended: true}))
 
 const connection = mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
-  useUnifiedTopology: true
+  useUnifiedTopology: true,
+  useCreateIndex: true
 })
 
 app.use(session({
@@ -57,6 +58,7 @@ app.get('/', async (req, res) => {
 // Import rotues
 app.use('/', require('./routes/register'))
 app.use('/', require('./routes/auth')(passport))
+app.use('/', require('./routes/password-reset'))
 
 app.listen(process.env.PORT, () => {
   console.log(`Listening on port ${process.env.PORT}...`)

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% set title = 'Reset' %}
+
+{% block styles %}
+{% endblock %}
+
+{% block content %}
+  <form action='/reset' method="POST">
+    {% if messages.error %}
+      <div class="alert alert-danger" role="alert">{{ messages.error }}</div>
+    {% endif %}
+    <div class="mb-3">
+      <label for="name" class="form-label">Enter your email address</label>
+      <input 
+        type="text"
+        class="form-control {% if messages.error %}is-invalid{% endif %}" 
+        id="email" 
+        name="email"
+        value="{{ messages.email or '' }}"
+        required>
+    </div>
+    <div>
+      <button type="submit" class="btn btn-primary">Send reset link</button>
+    </div>
+  </form>
+{% endblock %}
