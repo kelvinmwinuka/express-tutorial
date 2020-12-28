@@ -19,6 +19,11 @@ var userSchema = new Schema({
   password: {
     type: Schema.Types.String,
     required: [true, 'You must provide a password']
+  },
+  verified: {
+    type: Schema.Types.Boolean,
+    required: true,
+    default: false
   }
 })
 
