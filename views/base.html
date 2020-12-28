@@ -1,41 +1,90 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>{{ title }}</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!-- Bootstrap CSS -->
-    <link 
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" 
-      rel="stylesheet" 
-      integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" 
-      crossorigin="anonymous">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
+      crossorigin="anonymous"
+    />
     <style>
       form {
         margin-top: 20px;
         margin-left: 20px;
         margin-right: 20px;
       }
+      #content {
+        padding: 20px;
+      }
     </style>
-    {% block styles %}
-      {# This block will be replaced by child templates when importing styles #}
+    {% block styles %} 
+    {# This block will be replaced by child templates when importing styles #} 
     {% endblock %}
   </head>
   <body>
-    {% block content %}
-      {# This block will be replaced by child templates when adding content to the  #}
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/">Navbar</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a 
+                class="nav-link {% if title === 'Home' %}active{% endif %}" 
+                aria-current="page" 
+                href="/">
+                Home
+              </a>
+            </li>
+            <li class="nav-item">
+              <a 
+                class="nav-link {% if title === 'Profile' %}active{% endif %}" 
+                href="/profile">
+                Profile
+              </a>
+            </li>
+          </ul>
+          {% if not user and title === 'Login' %}
+            <a class="btn btn-outline-success" href="/register">Register</a>
+          {% elif not user %}
+            <a class="btn btn-outline-primary" href="/login">Login</a>
+          {% elif user %}
+            <a class="btn btn-outline-danger" href="/logout">Logout</a>
+          {% endif %}
+        </div>
+      </div>
+    </nav>
+
+    <div id="content">
+    {% block content %} 
+    {# This block will be replaced by child templates when adding content to the #} 
     {% endblock %}
+    </div>
 
     <!-- Bootstrap JavaScript Bundle with Popper -->
-    <script 
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" 
-      integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" 
-      crossorigin="anonymous">
-    </script>
-    {% block scripts %}
-      {# This block will be replaced by child templates when importing scripts #}
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+      crossorigin="anonymous"
+    ></script>
+    {% block scripts %} 
+    {# This block will be replaced by child templates when importing scripts #} 
     {% endblock %}
   </body>
 </html>
