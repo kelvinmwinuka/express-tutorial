@@ -8,6 +8,7 @@ const MongoStore = require('connect-mongo')(session)
 const flash = require('express-flash')
 const passport = require('passport')
 const initializePassport = require('./passport-helper')
+
 // Import models
 const { User } = require('./models')
 
@@ -46,7 +47,7 @@ initializePassport(app, passport)
 
 app.use((req, res, next) => {
   // Add user details to global variables accessible by nunjucks
-  env.addGlobal('user', req.user)
+  env.addGlobal('me', req.user)
   next()
 })
 
@@ -59,6 +60,9 @@ app.get('/', async (req, res) => {
 app.use('/', require('./routes/register'))
 app.use('/', require('./routes/auth')(passport))
 app.use('/', require('./routes/password-reset'))
+app.use('/', require('./routes/profile'))
+app.use('/', require('./routes/user-verification'))
+app.use('/user', require('./routes/user'))
 
 app.listen(process.env.PORT, () => {
   console.log(`Listening on port ${process.env.PORT}...`)

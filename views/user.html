@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% set title = user.name %}
+{% set following = user._id in me.following %}
+
+{% block styles %}
+  <style>
+    input {
+      display: none;
+    }
+  </style>
+{% endblock %}
+
+{% block content %}
+  <div>
+    <h6><strong>{{ user.name }}</strong></h6>
+    <form 
+      action="{% if following %}/user/unfollow{% else %}/user/follow{% endif %}"
+      method="POST">
+      <input class="followeeId" type="text" name="followeeId" value="{{user._id}}"/>
+      <button
+        class="btn btn-sm {% if following %}btn-danger{% else %}btn-primary{% endif %}"
+        type="submit">
+        {% if following %}Unfollow{% else %}Follow{% endif%}
+      </button>
+    </form>
+  </div>
+{% endblock %}
+
+{% block scripts %}
+{% endblock %}

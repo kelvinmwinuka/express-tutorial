@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% set title = 'Profile' %}
+
+{% block content %}
+  {% if messages.verify_success %}
+    <div class="alert alert-success" role="alert">
+      {{ messages.verify_success }}
+    </div>
+  {% endif %}
+  {% if messages.verify_error %}
+    <div class="alert alert-danger" role="alert">
+      {{ messages.verify_error }}
+    </div>
+  {% endif %}
+  <div>
+    <h5>Hi, {{ me.name }}</h5>
+    {% if not me.verified %}
+      Your email is not verified, 
+      <a class="btn btn-sm btn-warning" href="/verify">Verify Email</a>
+    {% endif %}
+  </div>
+{% endblock %}
+
+{% block scripts %}
+{% endblock %}

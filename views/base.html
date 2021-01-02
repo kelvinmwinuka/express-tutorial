@@ -60,11 +60,11 @@
               </a>
             </li>
           </ul>
-          {% if not user and title === 'Login' %}
+          {% if not me and title === 'Login' %}
             <a class="btn btn-outline-success" href="/register">Register</a>
-          {% elif not user %}
+          {% elif not me %}
             <a class="btn btn-outline-primary" href="/login">Login</a>
-          {% elif user %}
+          {% elif me %}
             <a class="btn btn-outline-danger" href="/logout">Logout</a>
           {% endif %}
         </div>
@@ -77,12 +77,23 @@
     {% endblock %}
     </div>
 
+    <!-- JQuery -->
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.min.js"
+      integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+      crossorigin="anonymous">
+    </script>
     <!-- Bootstrap JavaScript Bundle with Popper -->
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
-      crossorigin="anonymous"
-    ></script>
+      crossorigin="anonymous">
+    </script>
+    <script 
+      src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" 
+      integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ==" 
+      crossorigin="anonymous">
+    </script>
     {% block scripts %} 
     {# This block will be replaced by child templates when importing scripts #} 
     {% endblock %}

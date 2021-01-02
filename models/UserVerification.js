@@ -10,7 +10,11 @@ const schema = new Schema({
     type: Schema.Types.String,
     required: true
   }
+}, {
+  timestamps: true
 })
+
+schema.index({ 'updatedAt': 1 }, { expireAfterSeconds: 300 })
 
 const UserVerification = model('UserVerification', schema)
 
